@@ -2,6 +2,7 @@
 
 const Usuario = require('../models/Usuario');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 class LoginController {
     // GET /
@@ -32,6 +33,29 @@ class LoginController {
       //Usuario encontrado y validado           
       res.redirect('/anuncios');
     }
-}
 
+
+    // POST /loginJWT
+    async postLoginJWT(req, res, next) {
+        const email = req.body.emmail;
+        const password = req.body.password;
+
+        const user = await Usuario.findOne({ email: email });
+
+        if (!user || !await bcrypt.compare(password, user.password)) {
+            res.json({success: false, error: 'Wrong credentials'});
+            return;
+        }
+        //el usuario esta y coincide la password.
+        jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+            expiresIn: '1h'
+        }, (err, token) => {
+            if (err) {
+                next(err);
+                return;
+            }
+            res.json({ sucess: true, token: token});
+        });
+    }
+}
 module.exports = new LoginController();

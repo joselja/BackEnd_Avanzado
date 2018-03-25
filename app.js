@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
+const jwtAuth = require('./lib/jwtAuth');
+
 const conn = require('./lib/mongoConnection');
 
 //conectamos la BBDD
@@ -65,7 +67,10 @@ app.use('/users', require('./routes/users'));
 app.use ('/images', express.static (__dirname + '/public/images'));
 
 //middlewares del API
-app.use('/apiv1/anuncios', require('./routes/apiv1/anuncios'));
+app.use('/apiv1/anuncios', jwtAuth(), require('./routes/apiv1/anuncios'));
+
+app.use('/apiv1/authenticate', loginController.postLoginJWT);
+
 app.use('/apiv1/tags', require ('./routes/apiv1/tags'));
 
 // catch 404 and forward to error handler
