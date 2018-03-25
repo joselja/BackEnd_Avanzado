@@ -28,7 +28,7 @@ class LoginController {
           return;
       }
 
-      req.session.authUser = { _id: user._id };
+      req.session.authUser = { _id: user._id };//dentro de la sesion apunto el id del usuario, para saber que esta sesión está autenticada.
       //Usuario encontrado y validado           
       res.redirect('/anuncios');
     }

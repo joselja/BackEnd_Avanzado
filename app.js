@@ -5,7 +5,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
+const conn = require('./lib/mongoConnection');
 
 //conectamos la BBDD
 require('./lib/mongoConnection');
@@ -47,7 +49,11 @@ app.use(session({
     secret: 'dadasdsadasdasdasdasdadasd',
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 2 * 24 * 60 * 60 * 1000} // 2 días de inactividad
+    cookie: { maxAge: 2 * 24 * 60 * 60 * 1000, httpOnly: true},// 2 días de inactividad
+    store: new MongoStore({
+        // como conectarse a mi BBDD
+        mongooseConnection: conn
+    }) 
 }));
 
 //middlewares aplicación Web
