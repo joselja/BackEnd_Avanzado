@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+
+    <p>Please login to access</p>
+
+    <form method="POST">
+        Email address:<br>
+        <input type="email" name="email" value="<%= email %>">
+        <br><br><br>
+        Password:<br>
+        <input type="password" name="password">
+        <br><br><br>
+        <input type="submit" value="Submit">
+        <div><%= error %></div>
+    </form> 
+
+  </body>
+</html>

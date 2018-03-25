@@ -1,0 +1,28 @@
+{
+  "name": "nodepop",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "installDB": "/usr/bin/mongo --host=\"localhost:27017\" nodepopdb ./config/installDB.js",
+    "installDBUsuarios": "node ./config/installDBUsuarios"
+  },
+  "dependencies": {
+    "async": "^2.6.0",
+    "bcrypt": "^1.0.3",
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~3.1.0",
+    "ejs": "~2.5.7",
+    "express": "~4.16.2",
+    "express-async-errors": "^2.1.2",
+    "express-session": "^1.15.6",
+    "express-validator": "^5.0.3",
+    "i18n-2": "^0.7.2",
+    "morgan": "~1.9.0",
+    "serve-favicon": "~2.4.5"
+  },
+  "devDependencies": {
+    "eslint": "^4.17.0"
+  }
+}

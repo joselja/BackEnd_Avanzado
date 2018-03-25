@@ -1,0 +1,90 @@
+[
+    {
+        "nombre": "Macbook Air 15",
+        "venta": false,
+        "precio": 800.00,
+        "foto": "macbook_air.jpg",
+        "tags": [
+            "lifestyle",
+            "work"
+        ]
+    },
+    {
+        "nombre": "iPhone 3GS",
+        "venta": false,
+        "precio": 150.00,
+        "foto": "iphone.jpg",
+        "tags": [
+            "lifestyle",
+            "mobile"
+        ]
+    },
+    {
+        "nombre": "Truck",
+        "venta": true,
+        "precio": 76000.00,
+        "foto": "camion.jpg",
+        "tags": [
+            "motor",
+            "work"
+        ]
+    },
+    {
+        "nombre": "Bike",
+        "venta": true,
+        "precio": 280.45,
+        "foto": "bici.jpg",
+        "tags": [
+            "lifestyle",
+            "motor"
+        ]
+    },
+    {
+        "nombre": "Skateboard",
+        "venta": true,
+        "precio": 60.00,
+        "foto": "skateboard.jpg",
+        "tags": [
+            "lifestyle"
+        ]
+    },
+    {
+        "nombre": "Motorbike",
+        "venta": false,
+        "precio": 750.00,
+        "foto": "motorbike.jpg",
+        "tags": [
+            "motor",
+            "lifestyle"
+        ]
+    },
+    {
+        "nombre": "Longboard",
+        "venta": false,
+        "precio": 137.00,
+        "foto": "longboard.jpg",
+        "tags": [
+            "motor",
+            "lifestyle"
+        ]
+    },
+    {
+        "nombre": "Office Desk",
+        "venta": true,
+        "precio": 278.00,
+        "foto": "mesa_oficina.jpg",
+        "tags": [
+            "work"
+        ]
+    },
+    {
+        "nombre": "Macbook Pro 13",
+        "venta": true,
+        "precio": 950.00,
+        "foto": "macbook_pro.jpg",
+        "tags": [
+            "work",
+            "lifestyle"
+        ]
+    }
+]
