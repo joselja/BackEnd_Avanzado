@@ -34,16 +34,21 @@ class LoginController {
       res.redirect('/anuncios');
     }
 
-
+   
+   
     // POST /loginJWT
     async postLoginJWT(req, res, next) {
-        const email = req.body.emmail;
+        const email = req.body.email;
         const password = req.body.password;
-
+        
         const user = await Usuario.findOne({ email: email });
 
-        if (!user || !await bcrypt.compare(password, user.password)) {
+
+
+        //if (!user || !await bcrypt.compare(password, user.password)) {
+            if (!user) {
             res.json({success: false, error: 'Wrong credentials'});
+            console.log('entra1');
             return;
         }
         //el usuario esta y coincide la password.

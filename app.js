@@ -39,14 +39,44 @@ app.use(cookieParser());
 //Middleware de estáticos
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+const loginController = require('./routes/loginController');
+
+
+
+//middlewares del API
+app.use('/apiv1/anuncios', jwtAuth(), require('./routes/apiv1/anuncios'));
+
+app.use('/apiv1/authenticate', loginController.postLoginJWT);
+
+app.use('/apiv1/tags', jwtAuth(), require ('./routes/apiv1/tags'));
+
+
+app.use(async (req, res, next) => {
+    try {
+      // si el usuario está logado, cargamos en req.user el objeto de usuario desde la base de datos
+      // para que los siguientes middlewares lo puedan usar
+      req.user = req.session.authUser ? await Usuario.findById(req.session.authUser._id) : null;
+      next();
+    } catch(err) {
+      next(err);
+      return;
+    }
+  });
+
+//middlewares aplicación Web
+
+
 app.use(function (req, res, next) {
     next();
 });
 
-const loginController = require('./routes/loginController');
+app.use('/', require('./routes/index'));
+app.use('/users', require('./routes/users'));
+app.use ('/images', express.static (__dirname + '/public/images'));
 
 //middelware de control de sesiones
-app.use(session({
+/*app.use(session({
     name: 'nodepop-session',
     secret: 'dadasdsadasdasdasdasdadasd',
     resave: false,
@@ -57,59 +87,47 @@ app.use(session({
         mongooseConnection: conn
     }) 
 }));
+*/
 
-//middlewares aplicación Web
-app.get('/login', loginController.index);
-app.post('/login', loginController.post);
 
-app.use('/', require('./routes/index'));
-app.use('/users', require('./routes/users'));
-app.use ('/images', express.static (__dirname + '/public/images'));
-
-//middlewares del API
-app.use('/apiv1/anuncios', jwtAuth(), require('./routes/apiv1/anuncios'));
-
-app.use('/apiv1/authenticate', loginController.postLoginJWT);
-
-app.use('/apiv1/tags', require ('./routes/apiv1/tags'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
-});
-
-// error handler
-app.use(function(err, req, res) {
-
+  });
+  
+  // error handler
+  app.use(function(err, req, res, next) {
+  
     if (err.array) { // validation error
-        err.status = 422;
-        const errInfo = err.array({ onlyFirstError: true })[0];
-        err.message = `Not valid - ${errInfo.param} ${errInfo.msg}`;
+      err.status = 422;
+      const errInfo = err.array({ onlyFirstError: true })[0];
+      err.message = `Not valid - ${errInfo.param} ${errInfo.msg}`;
     }
-
+  
     res.status(err.status || 500);
-
+  
     // si es una petición de API, respondemos con JSON
     if (isAPI(req)) {
-        res.json({ success: false, error: err.message });
-        return;
+      res.json({ success: false, error: err.message });
+      return;
     }
-
+  
     // Respondo con una página de error
-
+  
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
-
+  
     // render the error page
     res.render('error');
-});
-
-
-function isAPI(req) {
+  });
+  
+  function isAPI(req) {
     return req.originalUrl.indexOf('/apiv') === 0;
-}
+  }
 
+  
 module.exports = app;

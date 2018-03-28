@@ -10,7 +10,7 @@ var appLib = require("../lib/appLib.js");
 // Cargar libreria de validaciones
 const { query, validationResult } = require("express-validator/check");
 
-router.use(sessionAuth());
+//router.use(sessionAuth());
 
 /* GET home page. */
 router.get("/anuncios", async (req, res, next) => {
