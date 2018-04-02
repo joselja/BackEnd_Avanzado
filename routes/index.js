@@ -10,7 +10,8 @@ var appLib = require("../lib/appLib.js");
 // Cargar libreria de validaciones
 const { query, validationResult } = require("express-validator/check");
 
-//router.use(sessionAuth());
+// cargamos objeto de upload
+const upload = require('../lib/uploadConfig');
 
 /* GET home page. */
 router.get("/anuncios", async (req, res, next) => {
@@ -74,11 +75,18 @@ router.get("/anuncios", async (req, res, next) => {
 });
 
 
+router.post('/upload', upload.single('imagen'), (req, res, next) => {
+  console.log('upload:', req.file);
+  res.redirect('/');
+});
+
 // Incluir las rutas de la API para los tipos de tags
 router.post("/enelbody", (req, res, next) => {
   console.log("req.body", req.body);
   res.send("ok");
 });
+
+
 
 // Función para filtrar por precio
 function filtrarPrecio(precio) {

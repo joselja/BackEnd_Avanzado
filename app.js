@@ -19,6 +19,8 @@ require('./models/Anuncio');
 //Carga el modelo de usuarios
 require('./models/Usuario');
 
+
+
 var app = express();
 
 
@@ -51,6 +53,8 @@ app.use('/apiv1/authenticate', loginController.postLoginJWT);
 
 app.use('/apiv1/tags', jwtAuth(), require ('./routes/apiv1/tags'));
 
+//app.use('/apiv1/upload', uploadConfig);
+
 
 app.use(async (req, res, next) => {
     try {
@@ -75,19 +79,7 @@ app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 app.use ('/images', express.static (__dirname + '/public/images'));
 
-//middelware de control de sesiones
-/*app.use(session({
-    name: 'nodepop-session',
-    secret: 'dadasdsadasdasdasdasdadasd',
-    resave: false,
-    saveUninitialized: false,
-    cookie: { maxAge: 2 * 24 * 60 * 60 * 1000, httpOnly: true},// 2 días de inactividad
-    store: new MongoStore({
-        // como conectarse a mi BBDD
-        mongooseConnection: conn
-    }) 
-}));
-*/
+
 
 
 
@@ -129,5 +121,5 @@ app.use(function(req, res, next) {
     return req.originalUrl.indexOf('/apiv') === 0;
   }
 
-  
+
 module.exports = app;
