@@ -1,4 +1,10 @@
-{
-	"Internal server error. NO_DATA_FOUND": "Internal server error. NO_DATA_FOUND",
-	"Internal server error. DB_FETCH_ERROR": "Internal server error. DB_FETCH_ERROR"
+
+{ 
+	"NOMBRE": "Name",
+	"ETIQUETA": "Label",
+	"PRECIO": "Price",
+	"COMPRAVENDE": "Sell or Buy",
+	"FOTO": "Photo",
+	"TITULO": "Welcome to NodePop"
 }
+ 

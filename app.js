@@ -41,6 +41,11 @@ app.use(cookieParser());
 //Middleware de estáticos
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Configuramos multiidioma en express
+const i18n = require('./lib/i18nConfigure')();
+app.use(i18n.init);
+i18n.setLocale('es');
+
 
 const loginController = require('./routes/loginController');
 
@@ -55,7 +60,7 @@ app.use('/apiv1/tags', jwtAuth(), require ('./routes/apiv1/tags'));
 
 //app.use('/apiv1/upload', uploadConfig);
 
-
+/*
 app.use(async (req, res, next) => {
     try {
       // si el usuario está logado, cargamos en req.user el objeto de usuario desde la base de datos
@@ -67,6 +72,7 @@ app.use(async (req, res, next) => {
       return;
     }
   });
+*/
 
 //middlewares aplicación Web
 
@@ -78,6 +84,7 @@ app.use(function (req, res, next) {
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 app.use ('/images', express.static (__dirname + '/public/images'));
+app.use('/lang', require('./routes/lang'));
 
 
 

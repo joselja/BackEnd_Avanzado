@@ -2,6 +2,7 @@
 
 var express = require("express");
 var router = express.Router();
+const i18n = require('../lib/i18nConfigure')();
 const sessionAuth = require('../lib/sessionAuth');
 
 const Anuncio = require("../models/Anuncio");

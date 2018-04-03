@@ -6,16 +6,21 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+
+    <% getLocales().forEach( lang => { %>
+      <a href="/lang/<%= lang %>"><%= lang %></a>&nbsp;
+    <% }) %>
+
+    <p><%= __('TITULO') %></p>
 
     <table>
       <thead>
         <tr>
-          <th>Nombre</th>
-          <th>Etiquetas</th>
-          <th>Precio</th>
-          <th>Venta o Compra</th>
-          <th>Foto</th>
+          <th><%= __('NOMBRE') %></th>
+          <th><%= __('ETIQUETA') %></th>
+          <th><%= __('PRECIO') %></th>
+          <th><%= __('COMPRAVENDE') %></th>
+          <th><%= __('FOTO') %></th>
         </tr>
       </thead>
       <tbody>
