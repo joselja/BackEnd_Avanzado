@@ -58,7 +58,8 @@ app.use('/apiv1/authenticate', loginController.postLoginJWT);
 
 app.use('/apiv1/tags', jwtAuth(), require ('./routes/apiv1/tags'));
 
-//app.use('/apiv1/upload', uploadConfig);
+app.use('/apiv1/upload', require ('./routes/apiv1/imagen'));
+
 
 /*
 app.use(async (req, res, next) => {

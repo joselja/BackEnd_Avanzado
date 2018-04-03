@@ -76,10 +76,7 @@ router.get("/anuncios", async (req, res, next) => {
 });
 
 
-router.post('/upload', upload.single('imagen'), (req, res, next) => {
-  console.log('upload:', req.file);
-  res.redirect('/');
-});
+
 
 // Incluir las rutas de la API para los tipos de tags
 router.post("/enelbody", (req, res, next) => {
