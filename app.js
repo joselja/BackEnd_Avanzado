@@ -61,19 +61,6 @@ app.use('/apiv1/tags', jwtAuth(), require ('./routes/apiv1/tags'));
 app.use('/apiv1/upload', require ('./routes/apiv1/imagen'));
 
 
-/*
-app.use(async (req, res, next) => {
-    try {
-      // si el usuario está logado, cargamos en req.user el objeto de usuario desde la base de datos
-      // para que los siguientes middlewares lo puedan usar
-      req.user = req.session.authUser ? await Usuario.findById(req.session.authUser._id) : null;
-      next();
-    } catch(err) {
-      next(err);
-      return;
-    }
-  });
-*/
 
 //middlewares aplicación Web
 
