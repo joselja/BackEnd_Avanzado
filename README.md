@@ -1,4 +1,4 @@
-<h1>Práctica JS/Node.js/MongoDB - KeepCoding Master</h1>
+<h1>Práctica BackEnd Avanzado - KeepCoding Master</h1>
 
 API de venta de artículos de segunda mano.
 
