@@ -7,6 +7,8 @@ const upload = require('../../lib/uploadConfig');
 
 const connectionPromise = require('../../lib/connectAMQP');
 
+const jwtAuth = require('../../lib/jwtAuth');
+
 
 
 const q = 'tareas';

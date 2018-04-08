@@ -45,8 +45,8 @@ class LoginController {
 
 
 
-        //if (!user || !await bcrypt.compare(password, user.password)) {
-            if (!user) {
+        if (!user || !await bcrypt.compare(password, user.password)) {
+        //    if (!user) {
             res.json({success: false, error: 'Wrong credentials'});
             console.log('entra1');
             return;

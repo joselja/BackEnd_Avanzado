@@ -7,13 +7,13 @@ let router = express.Router();
 
 let mongoose = require('mongoose'); //Mongoose
 let Anuncio = mongoose.model('Anuncio');
+const jwtAuth = require('../../lib/jwtAuth');
 
 let errorHandler = require('../../lib/error'); //Manejador de errores
 let anuncioFiltro =  require('../../lib/anuncioFilter'); //Manenador de Filtro de Anuncio
 
-
 //Documentos Anuncio
-router.get('/', function (req, res) {
+router.get('/', jwtAuth(), function (req, res) {
     //ordenación
     let sort = req.query.sort || null;
     //paginación
