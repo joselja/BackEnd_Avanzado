@@ -13,6 +13,8 @@ API de venta de artículos de segunda mano.
 ### Carga de usuarios en la Base de Datos
 	$ npm run-script installDBUsuarios
 
+### Configurar fichero .env
+	Configurar parámetros fichero .env incluido AMQP_URL
 ### Arrancar el API
 	$ npm start
 
